@@ -1,6 +1,7 @@
 package kea.sem3.jwtdemo.configuration;
 
 import kea.sem3.jwtdemo.entity.*;
+import kea.sem3.jwtdemo.repositories.CarRepository;
 import kea.sem3.jwtdemo.repositories.MemberRepository;
 import kea.sem3.jwtdemo.security.UserRepository;
 import org.springframework.boot.ApplicationArguments;
@@ -18,10 +19,12 @@ public class MakeTestData implements ApplicationRunner {
 
     UserRepository userRepository;
     MemberRepository memberRepository;
+    CarRepository carRepository;
 
-    public MakeTestData(UserRepository userRepository, MemberRepository memberRepository) {
+    public MakeTestData(UserRepository userRepository, MemberRepository memberRepository, CarRepository carRepository) {
         this.userRepository = userRepository;
         this.memberRepository = memberRepository;
+        this.carRepository = carRepository;
     }
 
     public  void makePlainUsers(){
@@ -43,6 +46,8 @@ public class MakeTestData implements ApplicationRunner {
         memberRepository.save(m1);
 
 
+
+
         System.out.println("########################################################################################");
         System.out.println("########################################################################################");
         System.out.println("#################################### WARNING ! #########################################");
@@ -55,6 +60,21 @@ public class MakeTestData implements ApplicationRunner {
 
     }
 
+    public void makeCars(){
+        Cars c1 = new Cars("Mercedes-Benz", "A45S", 5000);
+        c1.setBrand("Mercedes-Benz");
+        c1.setModel("A45S");
+        c1.setPricePrDay(5000);
+
+        Cars c2 = new Cars("Audi", "RS3", 4000);
+        c2.setBrand("Audi");
+        c2.setModel("RS3");
+        c2.setPricePrDay(4000);
+
+        carRepository.save(c1);
+        carRepository.save(c2);
+    }
+
     @Override
     public void run(ApplicationArguments args) throws Exception {
 
@@ -62,6 +82,7 @@ public class MakeTestData implements ApplicationRunner {
 
         makePlainUsers();
 
+        makeCars();
 
     }
 }
