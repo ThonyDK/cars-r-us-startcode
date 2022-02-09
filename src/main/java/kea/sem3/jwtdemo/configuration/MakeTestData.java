@@ -1,6 +1,9 @@
 package kea.sem3.jwtdemo.configuration;
 
-import kea.sem3.jwtdemo.entity.*;
+import kea.sem3.jwtdemo.entity.BaseUser;
+import kea.sem3.jwtdemo.entity.Car;
+import kea.sem3.jwtdemo.entity.Member;
+import kea.sem3.jwtdemo.entity.Role;
 import kea.sem3.jwtdemo.repositories.CarRepository;
 import kea.sem3.jwtdemo.repositories.MemberRepository;
 import kea.sem3.jwtdemo.security.UserRepository;
@@ -8,9 +11,6 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Controller;
-
-import java.time.LocalDate;
-import java.time.Month;
 
 @Controller
 @Profile("!test")
@@ -61,12 +61,12 @@ public class MakeTestData implements ApplicationRunner {
     }
 
     public void makeCars(){
-        Cars c1 = new Cars("Mercedes-Benz", "A45S", 5000);
+        Car c1 = new Car("Mercedes-Benz", "A45S", 5000,200);
         c1.setBrand("Mercedes-Benz");
         c1.setModel("A45S");
         c1.setPricePrDay(5000);
 
-        Cars c2 = new Cars("Audi", "RS3", 4000);
+        Car c2 = new Car("Audi", "RS3", 4000,200);
         c2.setBrand("Audi");
         c2.setModel("RS3");
         c2.setPricePrDay(4000);
