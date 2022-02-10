@@ -61,7 +61,7 @@ public class MakeTestData implements ApplicationRunner {
     }
 
     public void makeCars(){
-        Car c1 = new Car("Mercedes-Benz", "A45S", 4000,200);
+        Car c1 = new Car("Mercedes-Benz", "A45S", 4500,200);
         c1.setBrand("Mercedes-Benz");
         c1.setModel("A45S");
         c1.setPricePrDay(4500);
