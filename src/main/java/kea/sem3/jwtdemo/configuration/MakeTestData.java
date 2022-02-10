@@ -64,7 +64,7 @@ public class MakeTestData implements ApplicationRunner {
         Car c1 = new Car("Mercedes-Benz", "A45S", 4000,200);
         c1.setBrand("Mercedes-Benz");
         c1.setModel("A45S");
-        c1.setPricePrDay(5000);
+        c1.setPricePrDay(4500);
         c1.setBestDiscount(200);
 
         Car c2 = new Car("Audi", "RS3", 4000,200);
