@@ -65,11 +65,13 @@ public class MakeTestData implements ApplicationRunner {
         c1.setBrand("Mercedes-Benz");
         c1.setModel("A45S");
         c1.setPricePrDay(5000);
+        c1.setBestDiscount(200);
 
         Car c2 = new Car("Audi", "RS3", 4000,200);
         c2.setBrand("Audi");
         c2.setModel("RS3");
         c2.setPricePrDay(4000);
+        c2.setBestDiscount(200);
 
         carRepository.save(c1);
         carRepository.save(c2);
