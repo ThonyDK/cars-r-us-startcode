@@ -44,7 +44,7 @@ class CarServiceMockitoTest {
 
     @Test
     void testGetCar() throws Exception {
-        Car car = new Car("Volvo","V70",100,10);
+        Car car = new Car("VOLVO","V70",100,10);
         car.setId(1000);
         Mockito.when(carRepository.findById(1000)).thenReturn(Optional.of(car));
         CarResponse carRes = carService.getCar(1000,false);
