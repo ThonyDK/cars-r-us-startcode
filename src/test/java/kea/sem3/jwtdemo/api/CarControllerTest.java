@@ -101,8 +101,12 @@ class CarControllerTest {
     }
 
     // @Test
-    public void editCar() throws Exception {}
+    public void editCar() throws Exception {
+
+    }
 
     @Test
-    void deleteCar() throws Exception {}
+    void deleteCar() throws Exception {
+
+    }
 }
