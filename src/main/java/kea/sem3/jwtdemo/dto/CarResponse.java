@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
+//Getter & Setter Annotation kan man lave så man ikke selv skal ned og laver dem på traditionel vis.
 @Getter
 @Setter
 @NoArgsConstructor

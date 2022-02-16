@@ -1,16 +1,16 @@
 package kea.sem3.jwtdemo.configuration;
 
-import kea.sem3.jwtdemo.entity.BaseUser;
-import kea.sem3.jwtdemo.entity.Car;
-import kea.sem3.jwtdemo.entity.Member;
-import kea.sem3.jwtdemo.entity.Role;
+import kea.sem3.jwtdemo.entity.*;
 import kea.sem3.jwtdemo.repositories.CarRepository;
 import kea.sem3.jwtdemo.repositories.MemberRepository;
+import kea.sem3.jwtdemo.repositories.ReservationRepository;
 import kea.sem3.jwtdemo.security.UserRepository;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Controller;
+
+import java.time.LocalDate;
 
 @Controller
 @Profile("!test")
@@ -20,11 +20,13 @@ public class MakeTestData implements ApplicationRunner {
     UserRepository userRepository;
     MemberRepository memberRepository;
     CarRepository carRepository;
+    ReservationRepository reservationRepository;
 
-    public MakeTestData(UserRepository userRepository, MemberRepository memberRepository, CarRepository carRepository) {
+    public MakeTestData(UserRepository userRepository, MemberRepository memberRepository, CarRepository carRepository, ReservationRepository reservationRepository) {
         this.userRepository = userRepository;
         this.memberRepository = memberRepository;
         this.carRepository = carRepository;
+        this.reservationRepository = reservationRepository;
     }
 
     public  void makePlainUsers(){
@@ -41,11 +43,35 @@ public class MakeTestData implements ApplicationRunner {
         userRepository.save(admin);
         userRepository.save(both);
 
-        Member m1 = new Member("xxx", "xxx@a.dk", "test12", "Kurt", "Hansen", "Lyngbyvej", "Kbh Ø", 2100, true,2);
-        m1.addRole(Role.USER);
-        memberRepository.save(m1);
+        Member m1 = memberRepository.save(new Member("KW","kw@a.dk","test12","Kurt","Wonnegut","Lyngbyvje 34","Lyngby","2800"));
+        Member m2 = memberRepository.save(new Member("HW","hw@a.dk","test12","Hanne","Wonnegut","Lyngbyvje 34","Lyngby","2800"));
 
+        //Car instanser som man kan reservere lige nedenfor i create a reservation
+        Car carVolvo1 = carRepository.save(new Car("Volvo", "C40", 560,10));
+        Car carVolvo2 = carRepository.save(new Car("Volvo", "V70", 500,10));
+        carRepository.save(new Car("Volvo", "V49", 400,10));
+        carRepository.save(new Car("Suzuki", "Vitara", 500,14));
+        carRepository.save(new Car("Suzuki", "Vitara", 500,14));
+        carRepository.save(new Car("Suzuki", "S-Cross", 500,14));
 
+        //Create a Reservation
+        //Create a reservation ved at tilføje flere fra instanserne ovenfor som fx carVolvo3
+        //Hvis at den valgte bil fx carVolvo1 er booket kan den ikke double bookes samme dato. Se illustrationen nedenfor.
+        Reservation res1 = new Reservation(LocalDate.of(2022,3,1),carVolvo1,m1);
+        reservationRepository.save(res1);
+        //Reservation res2 = new Reservation(LocalDate.of(2022,3,1),carVolvo1,m2);
+        //reservationRepository.save(res2);
+
+        //Hvis at bilen er booket denne dato kan den ikke bookes
+        Reservation res = reservationRepository.findReservationByReservedCar_IdAndRentalDate(carVolvo1.getId(),(LocalDate.of(2022,3,1)));
+        if(res == null) {
+
+            Reservation res2 = new Reservation(LocalDate.of(2022, 3, 1), carVolvo1, m2);
+            reservationRepository.save(res2);
+        } else{
+            System.out.println("Car is reserved this day");
+        }
+        System.out.println(carVolvo1.getReservations().size());
 
 
         System.out.println("########################################################################################");
@@ -59,7 +85,6 @@ public class MakeTestData implements ApplicationRunner {
         System.out.println("Created TEST Users");
 
     }
-
     public void makeCars(){
         Car c1 = new Car("Mercedes-Benz", "A45S", 4500,200);
         c1.setBrand("Mercedes-Benz");

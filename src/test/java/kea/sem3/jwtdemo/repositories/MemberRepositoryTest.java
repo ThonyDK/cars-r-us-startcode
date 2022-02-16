@@ -16,8 +16,8 @@ class MemberRepositoryTest {
 
     @BeforeEach
     void setUp() {
-        memberRepository.save(new Member("xxx", "xxx@a.dk", "test12", "Peter", "Larsen", "Lyngbyvej", "kbh Ø", 2000, true, 3 ));
-        memberRepository.save(new Member("yyy", "yyy@a.dk", "test12","Hans","Jensen", "Lyngbyvej", "Kbh Ø", 2000, true, 4));
+        memberRepository.save(new Member("aa","aa@a.dk","test12","Kurt","Wonnegut","a vej 12","Lyngby","2800"));
+        memberRepository.save(new Member("bb","bb@a.dk","test12","Hanne","Wonnegut","b vej 12","Lyngby","2800"));
     }
     @Test
     public void testCount(){
