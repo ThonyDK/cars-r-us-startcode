@@ -39,7 +39,7 @@ public class CarController {
     public void editPrice(@PathVariable int id, @PathVariable double newprice) throws Exception{
         carService.updatePrice(id, newprice);
     }
-
+    //DeleteMapping
     @DeleteMapping("/{id}")
     public void deleteCar(@PathVariable int id){
     }
