@@ -37,7 +37,7 @@ public class CarService {
         carRepository.save(car);
         return new CarResponse(carRepository.save(car),true);
     }
-    //Service method for PATCH
+    //Service method for PATCH!
     public void updatePrice(int carId,double newPricePrDay){
         Car car = carRepository.findById(carId).orElseThrow(()-> new Client4xxException("No car with provided ID found"));
         car.setPricePrDay(newPricePrDay);
