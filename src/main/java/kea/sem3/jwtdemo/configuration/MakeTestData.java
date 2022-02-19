@@ -45,6 +45,7 @@ public class MakeTestData implements ApplicationRunner {
 
         Member m1 = memberRepository.save(new Member("KW","kw@a.dk","test12","Kurt","Wonnegut","Lyngbyvje 34","Lyngby","2800"));
         Member m2 = memberRepository.save(new Member("HW","hw@a.dk","test12","Hanne","Wonnegut","Lyngbyvje 34","Lyngby","2800"));
+        Member m3 = memberRepository.save(new Member("TD","td@a.dk","test12","Thony","Dyreborg","Lyngbyvje 34","Lyngby","2800"));
 
         //Car instanser som man kan reservere lige nedenfor i create a reservation
         Car carVolvo1 = carRepository.save(new Car("Volvo", "C40", 560,10));
@@ -59,15 +60,18 @@ public class MakeTestData implements ApplicationRunner {
         //Hvis at den valgte bil fx carVolvo1 er booket kan den ikke double bookes samme dato. Se illustrationen nedenfor.
         Reservation res1 = new Reservation(LocalDate.of(2022,3,1),carVolvo1,m1);
         reservationRepository.save(res1);
-        //Reservation res2 = new Reservation(LocalDate.of(2022,3,1),carVolvo1,m2);
-        //reservationRepository.save(res2);
+        Reservation res2 = new Reservation(LocalDate.of(2022,4,1),carVolvo1,m2);
+        reservationRepository.save(res2);
+        Reservation res3 = new Reservation(LocalDate.of(2022,5,2),carVolvo2,m3);
+        reservationRepository.save(res3);
 
         //Hvis at bilen er booket denne dato kan den ikke bookes
         Reservation res = reservationRepository.findReservationByReservedCar_IdAndRentalDate(carVolvo1.getId(),(LocalDate.of(2022,3,1)));
         if(res == null) {
-
-            Reservation res2 = new Reservation(LocalDate.of(2022, 3, 1), carVolvo1, m2);
-            reservationRepository.save(res2);
+            //Nedenfor er der prøvet på at lave en 4. reservation og den reservation er en reservation af carVolvo1 af member2 som prøver at booke bilen den samme dag som member1.
+            //I konsollen vil der derfor stå at bilen er reserveret den dag.
+            Reservation res4 = new Reservation(LocalDate.of(2022, 4, 1), carVolvo1, m2);
+            reservationRepository.save(res4);
         } else{
             System.out.println("Car is reserved this day");
         }

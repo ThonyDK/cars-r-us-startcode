@@ -60,8 +60,8 @@ public class Member extends BaseUser {
         this.street = street;
         this.city = city;
         this.zip = zip;
-        ranking = 5; //Initial ranking
-        isApproved = false;
+        this.ranking = 5; //Initial ranking
+        this.isApproved = false;
     }
     public Member(MemberRequest body) {
         //Just call the constructor above

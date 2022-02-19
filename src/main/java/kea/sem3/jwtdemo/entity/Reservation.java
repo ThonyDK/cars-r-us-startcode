@@ -1,18 +1,23 @@
 package kea.sem3.jwtdemo.entity;
 
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+@Getter
+@Setter
+@AllArgsConstructor
+@ToString
 @Entity
 public class Reservation {
 
     @Id
     //@GeneratedValue = Autogenerere et id til databasen
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int id;
+    Long id;
 
     @CreationTimestamp
     LocalDateTime reservationDate;

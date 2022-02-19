@@ -32,4 +32,12 @@ public class MemberController {
         System.out.println("Hello");
         return memberService.addMember(body);
     }
+    @PutMapping("/username")
+    public void editMember(@RequestBody MemberRequest body, @PathVariable String username){
+        memberService.editMember(body, username);
+    }
+    @DeleteMapping("/username")
+    public void deleteMember(@PathVariable String username){
+        memberService.deleteMember(username);
+    }
 }
