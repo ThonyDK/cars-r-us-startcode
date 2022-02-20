@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import kea.sem3.jwtdemo.dto.CarRequest;
 import kea.sem3.jwtdemo.entity.Car;
 import kea.sem3.jwtdemo.repositories.CarRepository;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +21,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-
-//Do something here
+//En bygger server er i vores tilfælde githubactions
+//SpringBootTest gør at vi kan få en fuld applications test
 @SpringBootTest
 @AutoConfigureMockMvc
 @ActiveProfiles("test")
@@ -46,9 +47,14 @@ class CarControllerTest {
         carFordId = carRepository.save(new Car("Ford", "Focus", 400, 10)).getId();
         carSuzukiId = carRepository.save(new Car("Suzuki", "Vitara", 500, 14)).getId();
     }
+    @AfterEach
+    public void cleanUp(){
+        carRepository.deleteAll();
+    }
 
     @Test
     void getCars() {
+
     }
 
     @Test
@@ -103,10 +109,12 @@ class CarControllerTest {
     // @Test
     public void editCar() throws Exception {
 
+
     }
 
     @Test
     void deleteCar() throws Exception {
-
+        mockMvc.perform(MockMvcRequestBuilders.delete("/api/cars/{id}", carFordId))
+                .andExpect(status().isOk());
     }
 }

@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import java.time.LocalDate;
 
 @Controller
+//Denne Annotation @Profile gør, at netop denne test ikke skal køres
 @Profile("!test")
 public class MakeTestData implements ApplicationRunner {
 
