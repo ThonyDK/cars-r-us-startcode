@@ -1,5 +1,6 @@
 package kea.sem3.jwtdemo.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import kea.sem3.jwtdemo.dto.MemberRequest;
 import lombok.Getter;
 import lombok.Setter;
@@ -35,17 +36,22 @@ public class Member extends BaseUser {
     @Column(length = 4)
     String zip;
 
+    @Column(name = "ranking")
+    int ranking;
+
+    @Column(name = "approved")
+    boolean isApproved;
+
+    @Column(name = "created")
     @CreationTimestamp
     LocalDateTime created;
 
+    @Column(name = "edited")
     @UpdateTimestamp
     LocalDateTime edited;
 
-    boolean isApproved;
 
-    //Number between 0 and 10, ranking the customer
-    byte ranking;
-
+    @JsonIgnore
     @OneToMany(mappedBy = "reservedTo")
     private Set<Reservation> reservations = new HashSet<>();
 

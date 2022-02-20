@@ -1,5 +1,6 @@
 package kea.sem3.jwtdemo.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -19,11 +20,14 @@ public class Reservation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
+    @Column(name = "reservtionDate")
     @CreationTimestamp
     LocalDateTime reservationDate;
 
+    @Column(name = "rentalDate")
     LocalDate rentalDate;
 
+    @JsonIgnore
     @ManyToOne
     Car reservedCar;
 

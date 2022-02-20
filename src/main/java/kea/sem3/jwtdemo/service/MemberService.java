@@ -63,6 +63,13 @@ public class MemberService {
 
         return new MemberResponse(memberRepository.save(m1),true);
     }
+    public void updateNames(String username, String firstName, String lastName) {
+        Member member = memberRepository.findById(username).orElseThrow(()-> new Client4xxException("User name: " + username + "Doesn't exist in database"));
+        member.setFirstName(firstName);
+        member.setLastName(lastName);
+        memberRepository.save(member);
+    }
+
     public void deleteMember(String username){
         memberRepository.deleteById(username);
     }

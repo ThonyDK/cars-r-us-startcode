@@ -39,13 +39,13 @@ public class CarService {
     }
     //Service method for PATCH!
     public void updatePrice(int carId,double newPricePrDay){
-        Car car = carRepository.findById(carId).orElseThrow(()-> new Client4xxException("No car with provided ID found"));
+        Car car = carRepository.findById(carId).orElseThrow(()-> new Client4xxException("No car with provided ID found" + carId));
         car.setPricePrDay(newPricePrDay);
         carRepository.save(car);
     }
 
     public void deleteCar(int id) {
-
+        carRepository.deleteById(id);
     }
 }
 
