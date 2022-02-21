@@ -16,7 +16,8 @@ import static org.hamcrest.Matchers.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 
-
+//den automatisk ruller min test tilbage.
+//Den vil bruge H2 database i stedet for den rigtige database.
 @DataJpaTest
 class CarServiceInMemoryTest
 {
@@ -27,12 +28,13 @@ class CarServiceInMemoryTest
     CarService carService;
 
     static int car1Id, car2Id;
-
+    //Beforeall køre en gang før min test
     @BeforeAll
     static void setup(@Autowired CarRepository carRepository){
         car1Id = carRepository.save(new Car("Volvo", "C40", 560,10)).getId();
         car2Id = carRepository.save(new Car("WW", "Up", 300,10)).getId();
     }
+
     @BeforeEach
     void setupService(){
         carService = new CarService(carRepository);

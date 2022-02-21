@@ -14,6 +14,10 @@ import java.util.List;
 /***** EXTEND IT TO CREATE SPECIALIZED USERS (LIKE Members) ***********************/
 /********************************************************************************/
 
+
+//Lombok genere getters og setters og constructors
+//ALlargsConstructor: laver en enkelt constructor så vi ikke skal lave dem selv med linjer kode
+//NoArgsconstructor: Den vil lave en tom constructor for os.
 @Entity
 @Getter
 @Setter

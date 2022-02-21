@@ -25,16 +25,18 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 //SpringBootTest gør at vi kan få en fuld applications test
 @SpringBootTest
 @AutoConfigureMockMvc
+//denne her gør at vi selv kan bestemme hvad vi vil køre at test. i MakeTestData er der sat "!test" hvilket gør
+//at den ikke tager den med i sin test. når vi tester skal det være simpelt.
 @ActiveProfiles("test")
 class CarControllerTest {
 
+    //Er noget autogenerering hvor den laver en instanse for os
     @Autowired
     MockMvc mockMvc;
 
     @Autowired
     CarRepository carRepository;
 
-    //Do something here
 
     @Autowired
     private ObjectMapper objectMapper;
@@ -56,7 +58,9 @@ class CarControllerTest {
     void getCars() {
 
     }
-
+    //Nedenstående er det vi laver i postman. Dette er jo fx en Get så hvis du kigger i postman og tager en get
+    //så vil du se at det er opsat på samme måde. linje 65 starter den med at det er en Get og så en URL og accept
+    //og print og så ser man nedenfor om det er det vi har forventet.
     @Test
     public void testCarById() throws Exception {
 
