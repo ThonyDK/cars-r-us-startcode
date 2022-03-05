@@ -1,6 +1,18 @@
-# Start code for the backend part of the Cars 'R' Us ongoing exercise
+# Description of weekly handin for project Cars-r-us. 
 
-Extend the BaseUser.java class when you create your Member entity. 
+1) First handin
 
-Then the Json Web Token based security, should work with whatever you design, with the code you will be give later.
+
+2) Second handin
+
+
+3) Third handin
+
+
+4) Fourth handin
+Deployed project to Azure with a docker container running on Ubuntu server.
+MySQL is installed and database in now running on Azure Virtual Machine
+
+
+
 
