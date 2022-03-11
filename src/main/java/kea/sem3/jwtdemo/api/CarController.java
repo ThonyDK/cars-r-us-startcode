@@ -5,10 +5,12 @@ import kea.sem3.jwtdemo.dto.CarResponse;
 import kea.sem3.jwtdemo.service.CarService;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.security.RolesAllowed;
 import java.util.List;
 
 //RESTController: Gør det samme som en normal controller
 //RequestMapping: Gør at api/cars bliver sat på automatisk på alle GetMapping stederne i klassen.
+@CrossOrigin
 @RestController
 @RequestMapping("api/cars")
 public class CarController {
@@ -31,11 +33,13 @@ public class CarController {
     //giver os det der kommer ind.
     //CarResponse er Json file der bliver sendt tilbage.
     @PostMapping
+    @RolesAllowed("ADMIN")
     public CarResponse addCar(@RequestBody CarRequest body){
         return carService.addCar(body);
     }
 
     @PutMapping("/{id}")
+    @RolesAllowed("ADMIN")
     public CarResponse editCar(@RequestBody CarRequest body, @PathVariable int id){
         return carService.editCar(body,id);
     }
