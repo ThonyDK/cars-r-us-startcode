@@ -95,6 +95,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/api/auth/**").permitAll()
                 .antMatchers(HttpMethod.GET, "/api/message/all").permitAll()
+                //.antMatchers(HttpMethod.GET, "/").permitAll()
                 //.antMatchers(HttpMethod.POST, "/api/members").permitAll()
                 .antMatchers(HttpMethod.GET, "/api/cars").permitAll()
                 .antMatchers(HttpMethod.GET, "/api/cars/{id}").permitAll()
@@ -102,8 +103,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 //.antMatchers(HttpMethod.GET, "/api/reservation/{carId}/{date}").permitAll()
                 .antMatchers(HttpMethod.GET, "/api/reservation/free/{carId}/{date}").permitAll()
                 // All other endpoints are private
-                .anyRequest().authenticated();
-                //.anyRequest().permitAll();  //Disable Security
+                //.anyRequest().authenticated();
+                .anyRequest().permitAll();  //Disable Security
         http.addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter.class);
     }
 
